@@ -4,6 +4,12 @@ This project includes a Python telemetry processor (part 1) and a React dashboar
 
 Part 2 contains a MySQL anomaly query and database design notes. Parts 4 and 5 document the AI-assisted development workflow and discuss hardware, security, and product integration considerations.
 
+## Assumptions & Design Choices
+
+1. **Calculated power must be nonnegative.** The project assumes power represents consumption, so records where `voltage * current` is negative are rejected and excluded from the summary. This assumption would need to be revisited if the system supported signed power or energy export.
+
+2. **A temperature of -2 makes only the health factor unavailable.** The health factor formula divides by `temperature + 2`, which is zero at this temperature. For an otherwise valid record, we retain its power in the device's total and increment its sample count, but skip the health factor calculation and report it as unavailable. The record does not contribute to the health sample count or average; if no health samples are available, the average is `None`.
+
 ## Prerequisites
 
 - Git.
