@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.carousel-track {
+  display: flex;
+  width: calc(100% + 1.5rem);
+  transform: translateX(0);
+  transition: transform 350ms ease-in-out;
+}
+
+.carousel-card {
+  flex: 0 0 33.333333%;
+  min-width: 0;
+  padding-right: 1.5rem;
+  overflow-wrap: anywhere;
+}
+
+.carousel-card > article {
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track { transition-duration: 1ms; }
+}
