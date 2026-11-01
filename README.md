@@ -58,10 +58,8 @@ Then clone the repository and follow the macOS/Linux instructions for part 1 and
 
 ## Clone the repository
 
-Replace `YOUR_REPOSITORY_URL` with this repository's HTTPS or SSH clone URL. No remote URL was configured in the checkout when this README was written.
-
 ```sh
-git clone YOUR_REPOSITORY_URL afik
+git clone https://github.com/ItayShar/afik
 cd afik
 ```
 
