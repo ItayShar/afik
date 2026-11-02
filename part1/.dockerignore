@@ -1,0 +1,6 @@
+*
+!Dockerfile
+!requirements-test.txt
+!telemetry.py
+!main.py
+!test_telemetry.py

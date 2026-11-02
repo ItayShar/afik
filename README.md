@@ -13,7 +13,7 @@ Part 2 contains a MySQL anomaly query and database design notes. Parts 4 and 5 d
 ## Prerequisites
 
 - Git.
-- Python 3.11 or newer for part 1.
+- Python 3.11 or newer for part 1, or Docker with Linux container support.
 - Node.js 22.12+ within the 22.x release line, or Node.js 24.x, with npm for part 3. These versions satisfy the project's Vite and Vitest requirements.
 
 ### Install prerequisites on macOS
@@ -70,6 +70,31 @@ All sections below start from the repository root. Use a separate terminal for e
 ## Part 1: Python telemetry processing
 
 The processor validates telemetry records and produces per-device power totals, average health factors, and validation reports. `main.py` prints examples of valid records, rejected records, unavailable health values, and aggregate overflow handling.
+
+### Run with Docker (Windows, macOS, or Linux)
+
+Install and start Docker (Docker Desktop using Linux containers on Windows).
+After cloning, run these commands from the repository root in PowerShell, Bash,
+or zsh. Python and a local virtual environment are not required:
+
+```sh
+docker build -t afik-telemetry ./part1
+docker run --rm afik-telemetry
+```
+
+The image uses Python 3.12, installs the dependencies, and runs the five examples
+in `main.py`. It prints results and exits; no ports or volume mounts are needed.
+The final example catches and prints the expected aggregate `OverflowError`.
+Local virtual environments and caches are excluded from the build context.
+
+Run the correctness tests using the same image:
+
+```sh
+docker run --rm afik-telemetry python -m pytest -q -p no:cacheprovider
+```
+
+Rebuild the image after changing the Python files or requirements. This image
+runs part 1 only; follow the separate instructions below for the dashboard.
 
 ### Install and run on Windows (PowerShell)
 
